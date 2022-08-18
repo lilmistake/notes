@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:notes/utility/color_pallet.dart';
 import 'components/components.dart';
 
 void main() {
@@ -15,7 +16,7 @@ class MyApp extends StatelessWidget {
       home: Scaffold(
         appBar: const MyAppBar(),
         body: Container(
-          color: const Color(0xff191919),
+          color: lightblack,
         ),
         bottomNavigationBar: const MyBottomNavBar()
       ),
