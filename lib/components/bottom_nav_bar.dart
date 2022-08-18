@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:notes/components/pages/create_note.dart';
 import 'package:notes/utility/color_pallet.dart';
 
 class MyBottomNavBar extends StatelessWidget {
@@ -17,7 +18,9 @@ class MyBottomNavBar extends StatelessWidget {
         size: 50,
       ),
       onPressed: () {
-        print("Button was pressed");
+        Navigator.of(context).push(
+          PageRouteBuilder(pageBuilder: ((context, animation, secondaryAnimation) => const CreateNote()))
+        );
       },
     );
   }
