@@ -18,7 +18,7 @@ class _HomePageState extends State<HomePage> {
   List<Widget> notesPreview = [];
 
   getNotesPreview() async {
-    List<Widget> response = await notesPreviewMaker(db);
+    List<Widget> response = await notesPreviewMaker(context);
     setState(() {
       gotData = true;
       notesPreview = response;
