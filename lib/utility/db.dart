@@ -1,14 +1,17 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
+int documentCount = 0;
 var db = FirebaseFirestore.instance;
 
 Future addNote({note}) async {
-  var res = await db.collection('users').add(note);
+  note['sno'] = documentCount + 1;
+  var res = await db.collection('note').add(note);
   return res;
 }
 
 Future getAllNotes() async {
-  var data = await db.collection('users').get();
+  var data = await db.collection('note').orderBy('sno', descending: true).get();
+  documentCount = data.docs.length;
   print(data);
   return data;
 }

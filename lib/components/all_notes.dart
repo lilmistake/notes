@@ -8,7 +8,11 @@ Future notesPreviewMaker(db) async {
     for (var i = 0; i < notesData.docs.length; i++) {
       var title = notesData.docs[i].data()['title'];
       var desc = notesData.docs[i].data()['desc'];
-      if (title == null || desc == null) continue;
+      var sno = notesData.docs[i].data()['sno'] ?? '';
+      if (title == null ||
+          title.toString().isEmpty ||
+          desc == null ||
+          desc.toString().isEmpty) continue;
 
       Column currentContainer = Column(
         children: [
@@ -22,7 +26,7 @@ Future notesPreviewMaker(db) async {
               color: blurple,
             ),
             child: Text(
-              title,
+              '${sno.toString()}. $title',
               softWrap: false,
               maxLines: 6,
               overflow: TextOverflow.ellipsis,
