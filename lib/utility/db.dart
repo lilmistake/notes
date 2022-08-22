@@ -12,6 +12,5 @@ Future addNote({note}) async {
 Future getAllNotes() async {
   var data = await db.collection('note').orderBy('sno', descending: true).get();
   documentCount = data.docs.length;
-  print(data);
   return data;
 }
