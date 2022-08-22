@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'color_pallet.dart';
+import '../utility/color_pallet.dart';
 
 Future notesPreviewMaker(db) async {
   List<Widget> notes = [];
