@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:notes/components/pages/create_note.dart';
+import '../pages/pages.dart';
 import 'package:notes/utility/color_pallet.dart';
 
-class MyBottomNavBar extends StatelessWidget {
+class MyBottomNavBar extends StatelessWidget {    
   const MyBottomNavBar({Key? key}) : super(key: key);
+  
 
   @override
   Widget build(BuildContext context) {
@@ -18,9 +19,8 @@ class MyBottomNavBar extends StatelessWidget {
         size: 50,
       ),
       onPressed: () {
-        Navigator.of(context).push(
-          PageRouteBuilder(pageBuilder: ((context, animation, secondaryAnimation) => const CreateNote()))
-        );
+        Navigator.of(context).push(PageRouteBuilder(
+            pageBuilder: ((c , a, s) => const CreateNote())));
       },
     );
   }
