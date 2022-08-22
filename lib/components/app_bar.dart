@@ -7,16 +7,24 @@ class MyAppBar extends StatelessWidget with PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AppBar(
-      systemOverlayStyle: const SystemUiOverlayStyle(
-          statusBarColor: blurple, statusBarBrightness: Brightness.dark),
-      backgroundColor: blurple,
-      foregroundColor: Colors.white,
-      centerTitle: true,
-      elevation: 0,
-      title: const Text("📝", style: TextStyle(fontSize: 40)),
-    );
+    return Container(
+        color: blurple,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            AppBar(
+              backgroundColor: blurple,
+              systemOverlayStyle: const SystemUiOverlayStyle(
+                  statusBarColor: blurple,
+                  statusBarBrightness: Brightness.dark),
+              foregroundColor: Colors.white,
+              centerTitle: true,
+              elevation: 0,
+              title: const Text("📝", style: TextStyle(fontSize: 40)),
+            ),
+          ],
+        ));
   }
-
-  Size get preferredSize => const Size.fromHeight(kToolbarHeight + 10);
+  @override
+  Size get preferredSize => const Size.fromHeight(kToolbarHeight + 15);
 }
