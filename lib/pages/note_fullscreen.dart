@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:notes/pages/pages.dart';
 import 'package:notes/utility/color_pallet.dart';
+import 'package:notes/models/models.dart';
 
 class FullScreenNote extends StatelessWidget {
-  final String title;
-  final String desc;
-  final int sno;
-  const FullScreenNote(
-      {Key? key, required this.title, required this.desc, required this.sno})
-      : super(key: key);
+  final Note currentNote;
+  const FullScreenNote({Key? key, required this.currentNote}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -15,26 +13,48 @@ class FullScreenNote extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: blurple,
         elevation: 0,
-        title: Text('${sno.toString()}. $title'),
+        title: Text('${currentNote.sno.toString()}. ${currentNote.title}'),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.edit),
+            color: Colors.white,
+            onPressed: () {
+              Navigator.of(context).push(PageRouteBuilder(
+                  pageBuilder: ((context, animation, secondaryAnimation) =>
+                      EditNote(currentNote: currentNote,))));
+            },
+          ),
+        ],
       ),
       backgroundColor: lightblack,
       body: ListView(
         children: [
-          Container(
-            alignment: Alignment.topLeft,
-            color: Colors.black,
-            child: Text(
-              title,
-              style: const TextStyle(color: Colors.white, fontSize: 40),
-            ),
+          Row(
+            children: [
+              Expanded(
+                child: Container(
+                    alignment: Alignment.topLeft,
+                    color: Colors.black,
+                    child: Text(
+                      currentNote.title,
+                      style: const TextStyle(color: Colors.white, fontSize: 40),
+                    )),
+              ),
+            ],
           ),
-          Container(
-            margin: const EdgeInsets.only(top: 5),
-            alignment: Alignment.topLeft,
-            child: Text(
-              desc,
-              style: const TextStyle(color: Colors.white, fontSize: 20),
-            ),
+          Row(
+            children: [
+              Expanded(
+                child: Container(
+                  margin: const EdgeInsets.only(top: 5),
+                  alignment: Alignment.topLeft,
+                  child: Text(
+                    currentNote.description,
+                    style: const TextStyle(color: Colors.white, fontSize: 20),
+                  ),
+                ),
+              ),
+            ],
           ),
         ],
       ),

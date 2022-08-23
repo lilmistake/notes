@@ -1,38 +1,32 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:notes/models/models.dart';
 import 'package:notes/pages/note_fullscreen.dart';
 import 'package:notes/utility/utility.dart';
 
 Future notesPreviewMaker(context) async {
-  List<Widget> notes = [];
+  List<Widget> notesContainerList = [];
 
-  await getAllNotes().then((notesData) {
+  await getAllNotes().then((notesData) {        
     for (var i = 0; i < notesData.docs.length; i++) {
-      var title = notesData.docs[i].data()['title'];
-      var desc = notesData.docs[i].data()['desc'];
-      var sno = notesData.docs[i].data()['sno'] ?? '';
-      if (title == null ||
-          title.toString().isEmpty ||
-          desc == null ||
-          desc.toString().isEmpty) continue;
-
-      notes.add(
-          noteContainer(desc: desc, sno: sno, title: title, context: context));
+      var doc = notesData.docs[i].data();
+      Note currentNote =
+          Note(sno: doc['sno'], title: doc['title'], description: doc['desc'], refID: notesData.docs[i].reference.id);
+      if (currentNote.isNull()) continue;
+      notesContainerList
+          .add(noteContainer(currentNote: currentNote, context: context));
     }
   });
-  return notes;
+  return notesContainerList;
 }
 
-noteContainer({sno, title, desc, context}) {
+noteContainer({required Note currentNote, context}) {
   return Builder(builder: (context) {
-    return InkWell(        
-        onTap: () {          
+    return InkWell(
+        onTap: () {
           Navigator.of(context).push(PageRouteBuilder(
               pageBuilder: ((context, animation, secondaryAnimation) =>
-                  FullScreenNote(
-                    title: title,
-                    desc: desc,
-                    sno: sno,
-                  ))));
+                  FullScreenNote(currentNote: currentNote,))));
         },
         child: Column(
           children: [
@@ -47,7 +41,7 @@ noteContainer({sno, title, desc, context}) {
                 color: blurple,
               ),
               child: Text(
-                '${sno.toString()}. $title',
+                '${currentNote.sno.toString()}. ${currentNote.title}',
                 softWrap: false,
                 maxLines: 6,
                 overflow: TextOverflow.ellipsis,
@@ -65,7 +59,7 @@ noteContainer({sno, title, desc, context}) {
                     bottomRight: Radius.circular(10)),
                 color: Colors.black,
               ),
-              child: Text(desc,
+              child: Text(currentNote.description,
                   softWrap: false,
                   maxLines: 6,
                   overflow: TextOverflow.ellipsis,
