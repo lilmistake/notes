@@ -58,7 +58,6 @@ class _CreateNoteState extends State<CreateNote> {
                               pageBuilder:
                                   ((context, animation, secondaryAnimation) =>
                                       const HomePage())));
-                          setState(() {});
                         })),
               ],
             ),
@@ -66,3 +65,4 @@ class _CreateNoteState extends State<CreateNote> {
         ));
   }
 }
+//todo arrange notes with timestamp created instead of serial number. (Put serial number later)
