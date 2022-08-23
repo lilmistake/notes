@@ -7,11 +7,14 @@ import 'package:notes/utility/utility.dart';
 Future notesPreviewMaker(context) async {
   List<Widget> notesContainerList = [];
 
-  await getAllNotes().then((notesData) {        
+  await getAllNotes().then((notesData) {
     for (var i = 0; i < notesData.docs.length; i++) {
       var doc = notesData.docs[i].data();
-      Note currentNote =
-          Note(sno: doc['sno'], title: doc['title'], description: doc['desc'], refID: notesData.docs[i].reference.id);
+      Note currentNote = Note(
+          sno: doc['sno'],
+          title: doc['title'],
+          description: doc['desc'],
+          refID: notesData.docs[i].reference.id);
       if (currentNote.isNull()) continue;
       notesContainerList
           .add(noteContainer(currentNote: currentNote, context: context));
@@ -25,8 +28,24 @@ noteContainer({required Note currentNote, context}) {
     return InkWell(
         onTap: () {
           Navigator.of(context).push(PageRouteBuilder(
+              transitionsBuilder:
+                  (context, animation, secondaryAnimation, child) {
+                const begin = Offset(0.0, 1.0);
+                const end = Offset.zero;
+                const curve = Curves.ease;
+
+                var tween = Tween(begin: begin, end: end)
+                    .chain(CurveTween(curve: curve));
+
+                return SlideTransition(
+                  position: animation.drive(tween),
+                  child: child,
+                );
+              },
               pageBuilder: ((context, animation, secondaryAnimation) =>
-                  FullScreenNote(currentNote: currentNote,))));
+                  FullScreenNote(
+                    currentNote: currentNote,
+                  ))));
         },
         child: Column(
           children: [
