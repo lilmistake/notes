@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:notes/pages/pages.dart';
+import 'package:notes/utility/page_transition.dart';
 import 'package:notes/utility/utility.dart';
 import 'package:notes/models/models.dart';
 
 class EditNote extends StatefulWidget {
   final Note currentNote;
-  
-  const EditNote({Key? key, required this.currentNote})
-      : super(key: key);
+
+  const EditNote({Key? key, required this.currentNote}) : super(key: key);
   @override
   State<EditNote> createState() => _EditNoteState();
 }
@@ -16,8 +16,10 @@ class _EditNoteState extends State<EditNote> {
   final _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
-    final titleController = TextEditingController(text: widget.currentNote.title);
-    final descriptionController = TextEditingController(text: widget.currentNote.description);
+    final titleController =
+        TextEditingController(text: widget.currentNote.title);
+    final descriptionController =
+        TextEditingController(text: widget.currentNote.description);
     return Scaffold(
         appBar: AppBar(
           backgroundColor: blurple,
@@ -57,10 +59,9 @@ class _EditNoteState extends State<EditNote> {
                             'desc': descriptionController.text
                           };
                           editNote(note: note, ref: widget.currentNote.refID);
-                          await Navigator.of(context).push(PageRouteBuilder(
-                              pageBuilder:
-                                  ((context, animation, secondaryAnimation) =>
-                                      const HomePage())));                          
+                          await Navigator.of(context).push(pageTransition(
+                              destination: const HomePage(),
+                              direction: TransitionDirection.LEFT_TO_RIGHT));
                         })),
               ],
             ),

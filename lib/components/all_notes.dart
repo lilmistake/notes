@@ -1,7 +1,7 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:notes/models/models.dart';
 import 'package:notes/pages/note_fullscreen.dart';
+import 'package:notes/utility/page_transition.dart';
 import 'package:notes/utility/utility.dart';
 
 Future notesPreviewMaker(context) async {
@@ -27,25 +27,7 @@ noteContainer({required Note currentNote, context}) {
   return Builder(builder: (context) {
     return InkWell(
         onTap: () {
-          Navigator.of(context).push(PageRouteBuilder(
-              transitionsBuilder:
-                  (context, animation, secondaryAnimation, child) {
-                const begin = Offset(0.0, 1.0);
-                const end = Offset.zero;
-                const curve = Curves.ease;
-
-                var tween = Tween(begin: begin, end: end)
-                    .chain(CurveTween(curve: curve));
-
-                return SlideTransition(
-                  position: animation.drive(tween),
-                  child: child,
-                );
-              },
-              pageBuilder: ((context, animation, secondaryAnimation) =>
-                  FullScreenNote(
-                    currentNote: currentNote,
-                  ))));
+          Navigator.of(context).push(pageTransition(destination:  FullScreenNote(currentNote: currentNote),direction: TransitionDirection.DOWN_TO_UP));
         },
         child: Column(
           children: [

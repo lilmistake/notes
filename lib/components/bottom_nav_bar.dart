@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:notes/utility/page_transition.dart';
 import '../pages/pages.dart';
 import 'package:notes/utility/color_pallet.dart';
 
@@ -19,8 +20,8 @@ class MyBottomNavBar extends StatelessWidget {
         size: 50,
       ),
       onPressed: () {
-        Navigator.of(context).push(PageRouteBuilder(
-            pageBuilder: ((c , a, s) => const CreateNote())));
+        
+        Navigator.of(context).push(pageTransition(destination: const CreateNote(), direction: TransitionDirection.DOWN_TO_UP));
       },
     );
   }

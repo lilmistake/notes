@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:notes/pages/pages.dart';
+import 'package:notes/utility/page_transition.dart';
 import 'package:notes/utility/utility.dart';
 import 'package:notes/models/models.dart';
 
@@ -54,10 +55,8 @@ class _CreateNoteState extends State<CreateNote> {
                             'desc': descriptionController.text
                           };
                           addNote(note: note);
-                          await Navigator.of(context).push(PageRouteBuilder(
-                              pageBuilder:
-                                  ((context, animation, secondaryAnimation) =>
-                                      const HomePage())));
+                          await Navigator.of(context).push(pageTransition(destination: HomePage(), direction: TransitionDirection.LEFT_TO_RIGHT));                            
+                          
                         })),
               ],
             ),
