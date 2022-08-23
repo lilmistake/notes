@@ -9,6 +9,11 @@ Future addNote({note}) async {
   return res;
 }
 
+Future editNote({note, ref}) async {
+  var res = await db.collection('note').doc(ref).update(note);
+  return res;
+}
+
 Future getAllNotes() async {
   var data = await db.collection('note').orderBy('sno', descending: true).get();
   documentCount = data.docs.length;
