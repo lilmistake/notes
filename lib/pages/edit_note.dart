@@ -22,10 +22,8 @@ class _EditNoteState extends State<EditNote> {
         TextEditingController(text: widget.currentNote.description);
     return Scaffold(
         appBar: AppBar(
-          backgroundColor: blurple,
           title: const Text("Edit note"),
         ),
-        backgroundColor: lightblack,
         body: Container(
           margin: const EdgeInsets.only(top: 20),
           child: Form(
@@ -43,14 +41,14 @@ class _EditNoteState extends State<EditNote> {
                 Container(
                     decoration: const BoxDecoration(
                       shape: BoxShape.circle,
-                      color: blurple,
+                      
                     ),
                     child: IconButton(
                         padding: EdgeInsets.zero,
                         icon: const Icon(
                           Icons.navigate_next_outlined,
                           size: 50,
-                          color: Colors.black,
+                          
                         ),
                         onPressed: () async {
                           if (!_formKey.currentState!.validate()) return;

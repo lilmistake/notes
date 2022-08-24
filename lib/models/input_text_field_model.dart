@@ -7,11 +7,13 @@ class MyInputTextFeild extends Container {
   final int minLines;
   final int maxLines;
   MyInputTextFeild(
-      {Key? key, required this.field,
+      {Key? key,
+      required this.field,
       required this.controller,
       this.minLines = 1,
       this.maxLines = 1})
-      : super(key: key, 
+      : super(
+          key: key,
           padding: const EdgeInsets.only(top: 20),
           child: TextFormField(
             minLines: minLines,
@@ -21,21 +23,20 @@ class MyInputTextFeild extends Container {
                 return '$field cannot be empty';
               }
               return null;
-            },
-            style: const TextStyle(color: Colors.white),
-            controller: controller,
-            cursorColor: Colors.white,
+            },            
+            controller: controller,            
             decoration: inputFieldDecor(field),
           ),
         );
 }
 
-
 inputFieldDecor(label) {
   var focused = const OutlineInputBorder(
-    borderSide: BorderSide(width: 3, color: Colors.white),
+    borderSide: BorderSide(
+      width: 3,
+    ),
   );
-  var labelStyle = const TextStyle(color: Colors.white, fontSize: 20);
+  var labelStyle = const TextStyle(fontSize: 20);
   return InputDecoration(
     labelText: label,
     labelStyle: labelStyle,
@@ -46,7 +47,9 @@ inputFieldDecor(label) {
       borderSide: BorderSide(width: 3, color: Colors.red),
     ),
     enabledBorder: const OutlineInputBorder(
-      borderSide: BorderSide(width: 3, color: blurple),
+      borderSide: BorderSide(
+        width: 3,
+      ),
     ),
   );
 }

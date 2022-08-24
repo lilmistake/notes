@@ -27,49 +27,47 @@ noteContainer({required Note currentNote, context}) {
   return Builder(builder: (context) {
     return InkWell(
         onTap: () {
-          Navigator.of(context).push(pageTransition(destination:  FullScreenNote(currentNote: currentNote),direction: TransitionDirection.DOWN_TO_UP));
+          Navigator.of(context).push(pageTransition(
+              destination: FullScreenNote(currentNote: currentNote),
+              direction: TransitionDirection.DOWN_TO_UP));
         },
-        child: Column(
-          children: [
-            Container(
-              constraints: const BoxConstraints(maxHeight: double.infinity),
-              width: double.infinity,
-              padding: const EdgeInsets.all(5),
-              decoration: const BoxDecoration(
-                borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(10),
-                    topRight: Radius.circular(10)),
-                color: blurple,
-              ),
-              child: Text(
-                '${currentNote.sno.toString()}. ${currentNote.title}',
-                softWrap: false,
-                maxLines: 6,
-                overflow: TextOverflow.ellipsis,
-                style:
-                    const TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
-              ),
-            ),
-            Container(
-              constraints: const BoxConstraints(maxHeight: double.infinity),
-              width: double.infinity,
-              padding: const EdgeInsets.all(5),
-              decoration: const BoxDecoration(
-                borderRadius: BorderRadius.only(
-                    bottomLeft: Radius.circular(10),
-                    bottomRight: Radius.circular(10)),
-                color: Colors.black,
-              ),
-              child: Text(currentNote.description,
+        child: Container(
+          decoration: BoxDecoration(              
+              borderRadius: const BorderRadius.all(Radius.circular(10)),
+              border: Border.all(
+                  color: Theme.of(context).colorScheme.primary, width: 3)),
+          child: Column(
+            children: [
+              Container(
+                constraints: const BoxConstraints(maxHeight: double.infinity),
+                width: double.infinity,
+                padding: const EdgeInsets.all(5),
+                color: Theme.of(context).colorScheme.primary,
+                child: Text(
+                  '${currentNote.sno.toString()}. ${currentNote.title}',
                   softWrap: false,
                   maxLines: 6,
                   overflow: TextOverflow.ellipsis,
-                  style: const TextStyle(
-                    fontSize: 20,
-                    color: Colors.white,
-                  )),
-            ),
-          ],
+                  style: TextStyle(
+                      fontSize: 25,
+                      fontWeight: FontWeight.bold,
+                      color: Theme.of(context).colorScheme.onPrimary),
+                ),
+              ),
+              Container(
+                constraints: const BoxConstraints(maxHeight: double.infinity),
+                width: double.infinity,
+                padding: const EdgeInsets.all(5),
+                child: Text(currentNote.description,
+                    softWrap: false,
+                    maxLines: 6,
+                    overflow: TextOverflow.ellipsis,
+                    style: TextStyle(
+                        fontSize: 20,
+                        color: Theme.of(context).colorScheme.onSecondary)),
+              ),
+            ],
+          ),
         ));
   });
 }

@@ -10,11 +10,6 @@ class MyBottomNavBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
-      style: ButtonStyle(
-        backgroundColor: MaterialStateProperty.all(
-          blurple,
-        ),
-      ),
       child: const Icon(
         Icons.add,
         size: 50,

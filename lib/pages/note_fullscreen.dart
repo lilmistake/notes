@@ -11,13 +11,13 @@ class FullScreenNote extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: blurple,
+        backgroundColor: Theme.of(context).colorScheme.primary,
         elevation: 0,
         title: Text('${currentNote.sno.toString()}. ${currentNote.title}'),
         actions: [
           IconButton(
             icon: const Icon(Icons.edit),
-            color: Colors.white,
+            color: Theme.of(context).colorScheme.onPrimary,
             onPressed: () {
               Navigator.of(context).push(PageRouteBuilder(
                   pageBuilder: ((context, animation, secondaryAnimation) =>
@@ -26,7 +26,7 @@ class FullScreenNote extends StatelessWidget {
           ),
         ],
       ),
-      backgroundColor: lightblack,
+      backgroundColor: Theme.of(context).colorScheme.secondary,
       body: ListView(
         children: [
           Row(
@@ -34,10 +34,10 @@ class FullScreenNote extends StatelessWidget {
               Expanded(
                 child: Container(
                     alignment: Alignment.topLeft,
-                    color: Colors.black,
+                    color: Theme.of(context).colorScheme.primary,
                     child: Text(
                       currentNote.title,
-                      style: const TextStyle(color: Colors.white, fontSize: 40),
+                      style: TextStyle(color: Theme.of(context).colorScheme.onPrimary, fontSize: 40),
                     )),
               ),
             ],
@@ -50,7 +50,7 @@ class FullScreenNote extends StatelessWidget {
                   alignment: Alignment.topLeft,
                   child: Text(
                     currentNote.description,
-                    style: const TextStyle(color: Colors.white, fontSize: 20),
+                    style: TextStyle(color: Theme.of(context).colorScheme.onPrimary, fontSize: 20),
                   ),
                 ),
               ),

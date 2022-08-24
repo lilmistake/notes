@@ -29,27 +29,39 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     if (!gotData) getNotesPreview();
     return MaterialApp(
+      theme:
+          ThemeData(colorScheme: const ColorScheme.light(primary: Color(0xff191919), secondary: Colors.white)),
       debugShowCheckedModeBanner: false,
       home: Scaffold(
           appBar: const MyAppBar(),
-          body: Container(
-            color: lightblack,
-            child: Container(
-                margin: const EdgeInsets.only(top: 20),
-                child: gotData
-                    ? MasonryGridView.count(
-                        crossAxisCount: 2,
-                        mainAxisSpacing: 10,
-                        crossAxisSpacing: 10,
-                        itemBuilder: (context, index) {
-                          if (index == notesPreview.length) return Container();
-                          return notesPreview[index];
-                        },
-                        itemCount: notesPreview.length,
-                    )
-                    : const MyPreloader()),
-          ),
+          
+          body: HomeBody(gotData: gotData, notesPreview: notesPreview),
           bottomNavigationBar: const MyBottomNavBar()),
     );
+  }
+}
+
+class HomeBody extends StatelessWidget {
+  const HomeBody({Key? key, required this.gotData, required this.notesPreview})
+      : super(key: key);
+  final bool gotData;
+  final List<Widget> notesPreview;
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      color: Theme.of(context).colorScheme.secondary,
+        margin: const EdgeInsets.only(top: 20),
+        child: gotData
+            ? MasonryGridView.count(
+                crossAxisCount: 2,
+                mainAxisSpacing: 10,
+                crossAxisSpacing: 10,
+                itemBuilder: (context, index) {
+                  if (index == notesPreview.length) return Container();
+                  return notesPreview[index];
+                },
+                itemCount: notesPreview.length,
+              )
+            : const MyPreloader());
   }
 }

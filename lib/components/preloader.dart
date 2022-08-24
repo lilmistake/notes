@@ -5,12 +5,12 @@ class MyPreloader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Center(
+    return Center(
         child: SizedBox(
             width: 100,
             height: 100,
             child: CircularProgressIndicator(
-              color: Colors.white,
+              color: Theme.of(context).colorScheme.primary,
               strokeWidth: 7,
             )));
   }

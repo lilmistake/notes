@@ -18,12 +18,11 @@ class _CreateNoteState extends State<CreateNote> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          backgroundColor: blurple,
           title: const Text("Create new note"),
         ),
-        backgroundColor: lightblack,
+        
         body: Container(
-          margin: const EdgeInsets.only(top: 20),
+          margin: const EdgeInsets.all(20),
           child: Form(
             key: _formKey,
             child: ListView(
@@ -39,14 +38,12 @@ class _CreateNoteState extends State<CreateNote> {
                 Container(
                     decoration: const BoxDecoration(
                       shape: BoxShape.circle,
-                      color: blurple,
                     ),
                     child: IconButton(
                         padding: EdgeInsets.zero,
                         icon: const Icon(
                           Icons.navigate_next_outlined,
                           size: 50,
-                          color: Colors.black,
                         ),
                         onPressed: () async {
                           if (!_formKey.currentState!.validate()) return;
@@ -55,8 +52,9 @@ class _CreateNoteState extends State<CreateNote> {
                             'desc': descriptionController.text
                           };
                           addNote(note: note);
-                          await Navigator.of(context).push(pageTransition(destination: HomePage(), direction: TransitionDirection.LEFT_TO_RIGHT));                            
-                          
+                          await Navigator.of(context).push(pageTransition(
+                              destination: const HomePage(),
+                              direction: TransitionDirection.LEFT_TO_RIGHT));
                         })),
               ],
             ),
