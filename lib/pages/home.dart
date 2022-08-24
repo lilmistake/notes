@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:notes/utility/utility.dart';
 import 'package:notes/components/components.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
@@ -50,7 +49,7 @@ class HomeBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       color: Theme.of(context).colorScheme.secondary,
-        margin: const EdgeInsets.only(top: 20),
+        margin: const EdgeInsets.only(top: 5, bottom: 5),
         child: gotData
             ? MasonryGridView.count(
                 crossAxisCount: 2,
