@@ -50,7 +50,7 @@ class FullScreenNote extends StatelessWidget {
                   alignment: Alignment.topLeft,
                   child: Text(
                     currentNote.description,
-                    style: TextStyle(color: Theme.of(context).colorScheme.onPrimary, fontSize: 20),
+                    style: TextStyle(color: Theme.of(context).colorScheme.onSecondary, fontSize: 20),
                   ),
                 ),
               ),
