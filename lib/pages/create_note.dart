@@ -52,9 +52,9 @@ class _CreateNoteState extends State<CreateNote> {
                             'desc': descriptionController.text
                           };
                           addNote(note: note);
-                          await Navigator.of(context).push(pageTransition(
+                          await Navigator.of(context).pushAndRemoveUntil(pageTransition(
                               destination: const HomePage(),
-                              direction: TransitionDirection.LEFT_TO_RIGHT));
+                              direction: TransitionDirection.LEFT_TO_RIGHT), (route)=>false);
                         })),
               ],
             ),

@@ -57,9 +57,9 @@ class _EditNoteState extends State<EditNote> {
                             'desc': descriptionController.text
                           };
                           editNote(note: note, ref: widget.currentNote.refID);
-                          await Navigator.of(context).push(pageTransition(
+                          await Navigator.of(context).pushAndRemoveUntil(pageTransition(
                               destination: const HomePage(),
-                              direction: TransitionDirection.LEFT_TO_RIGHT));
+                              direction: TransitionDirection.LEFT_TO_RIGHT), (route)=>false);
                         })),
               ],
             ),
