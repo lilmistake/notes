@@ -1,6 +1,8 @@
+// ignore_for_file: non_constant_identifier_names
+
 import 'package:flutter/material.dart';
 
-class TransitionDirection {
+class TransitionDirection {  
   static Offset UP_TO_DOWN = const Offset(0.0, -1.0);
   static Offset DOWN_TO_UP = const Offset(0.0, 1.0);
   static Offset LEFT_TO_RIGHT = const Offset(-1.0, 0.0);
