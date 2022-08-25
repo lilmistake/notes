@@ -27,12 +27,16 @@ noteContainer({required Note currentNote, context}) {
   return Builder(builder: (context) {
     return InkWell(
         onTap: () {
-          Navigator.of(context).push(pageTransition(
-              destination: FullScreenNote(currentNote: currentNote),
-              direction: TransitionDirection.DOWN_TO_UP));
+          
+          Navigator.of(context).pushAndRemoveUntil(
+            pageTransition(
+                destination: FullScreenNote(currentNote: currentNote),
+                direction: TransitionDirection.DOWN_TO_UP),
+            (route) => route.isFirst,
+          );
         },
         child: Container(
-          decoration: BoxDecoration(              
+          decoration: BoxDecoration(
               borderRadius: const BorderRadius.all(Radius.circular(10)),
               border: Border.all(
                   color: Theme.of(context).colorScheme.primary, width: 3)),
