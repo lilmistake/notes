@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:notes/utility/utility.dart';
 
 class MyInputTextFeild extends Container {
   final String field;

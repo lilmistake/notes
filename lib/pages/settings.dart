@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:notes/utility/color_pallet.dart';
 
 class SettingsPage extends StatelessWidget {
   const SettingsPage({Key? key}) : super(key: key);

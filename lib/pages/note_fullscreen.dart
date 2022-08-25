@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:notes/pages/pages.dart';
-import 'package:notes/utility/color_pallet.dart';
 import 'package:notes/models/models.dart';
 
 class FullScreenNote extends StatelessWidget {
