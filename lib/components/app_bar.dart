@@ -16,7 +16,7 @@ class MyAppBar extends StatelessWidget with PreferredSizeWidget {
           systemOverlayStyle: const SystemUiOverlayStyle(
               statusBarColor: blurple, statusBarBrightness: Brightness.dark),
           centerTitle: true,
-          elevation: 0,
+          elevation: 5,
           actions: [
             IconButton(
                 onPressed: () {
