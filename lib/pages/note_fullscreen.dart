@@ -25,7 +25,7 @@ class FullScreenNote extends StatelessWidget {
           ),
         ],
       ),
-      backgroundColor: Theme.of(context).colorScheme.secondary,
+      backgroundColor: Theme.of(context).colorScheme.primary,
       body: ListView(
         children: [
           Row(
@@ -33,10 +33,10 @@ class FullScreenNote extends StatelessWidget {
               Expanded(
                 child: Container(
                     alignment: Alignment.topLeft,
-                    color: Theme.of(context).colorScheme.primary,
+                    color: Theme.of(context).colorScheme.secondary,
                     child: Text(
                       currentNote.title,
-                      style: TextStyle(color: Theme.of(context).colorScheme.onPrimary, fontSize: 40),
+                      style: TextStyle(color: Theme.of(context).colorScheme.onSecondary, fontSize: 40),
                     )),
               ),
             ],
@@ -49,7 +49,7 @@ class FullScreenNote extends StatelessWidget {
                   alignment: Alignment.topLeft,
                   child: Text(
                     currentNote.description,
-                    style: TextStyle(color: Theme.of(context).colorScheme.onSecondary, fontSize: 20),
+                    style: TextStyle(color: Theme.of(context).colorScheme.onPrimary, fontSize: 20),
                   ),
                 ),
               ),

@@ -28,12 +28,16 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     if (!gotData) getNotesPreview();
     return MaterialApp(
-      theme:
-          ThemeData(colorScheme: const ColorScheme.light(primary: Color(0xff191919), secondary: Colors.white)),
+      theme: ThemeData(
+          colorScheme: const ColorScheme.light(
+              primary: Colors.white,
+              secondary: Colors.red,
+              onPrimary: Colors.black,
+              background: Colors.white,
+              onSecondary: Colors.white)),
       debugShowCheckedModeBanner: false,
       home: Scaffold(
           appBar: const MyAppBar(),
-          
           body: HomeBody(gotData: gotData, notesPreview: notesPreview),
           bottomNavigationBar: const MyBottomNavBar()),
     );
@@ -48,8 +52,8 @@ class HomeBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Theme.of(context).colorScheme.secondary,
-        margin: const EdgeInsets.only(top: 5, bottom: 5),
+        color: Theme.of(context).colorScheme.background,
+        margin: const EdgeInsets.only(top: 5, bottom: 5, left: 5, right: 5),
         child: gotData
             ? MasonryGridView.count(
                 crossAxisCount: 2,

@@ -37,16 +37,16 @@ noteContainer({required Note currentNote, context}) {
         },
         child: Container(
           decoration: BoxDecoration(
-              borderRadius: const BorderRadius.all(Radius.circular(10)),
+              borderRadius: const BorderRadius.all(Radius.circular(10)),              
               border: Border.all(
-                  color: Theme.of(context).colorScheme.primary, width: 3)),
+                  color: Theme.of(context).colorScheme.secondary, width: 3)),
           child: Column(
             children: [
               Container(
                 constraints: const BoxConstraints(maxHeight: double.infinity),
                 width: double.infinity,
                 padding: const EdgeInsets.all(5),
-                color: Theme.of(context).colorScheme.primary,
+                color: Theme.of(context).colorScheme.secondary,
                 child: Text(
                   '${currentNote.sno.toString()}. ${currentNote.title}',
                   softWrap: false,
@@ -55,12 +55,13 @@ noteContainer({required Note currentNote, context}) {
                   style: TextStyle(
                       fontSize: 25,
                       fontWeight: FontWeight.bold,
-                      color: Theme.of(context).colorScheme.onPrimary),
+                      color: Theme.of(context).colorScheme.onSecondary),
                 ),
               ),
               Container(
                 constraints: const BoxConstraints(maxHeight: double.infinity),
                 width: double.infinity,
+                color: Theme.of(context).colorScheme.primary,                
                 padding: const EdgeInsets.all(5),
                 child: Text(currentNote.description,
                     softWrap: false,
@@ -68,7 +69,7 @@ noteContainer({required Note currentNote, context}) {
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle(
                         fontSize: 20,
-                        color: Theme.of(context).colorScheme.onSecondary)),
+                        color: Theme.of(context).colorScheme.onPrimary)),
               ),
             ],
           ),
