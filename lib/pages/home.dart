@@ -4,6 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:provider/provider.dart';
 import 'package:notes/main.dart';
+
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
 
@@ -31,10 +32,7 @@ class _HomePageState extends State<HomePage> {
     return MaterialApp(
       theme: context.watch<ThemeChanger>().theme,
       debugShowCheckedModeBanner: false,
-      home: Scaffold(
-          appBar: const MyAppBar(),
-          body: HomeBody(gotData: gotData, notesPreview: notesPreview),
-          bottomNavigationBar: const MyBottomNavBar()),
+      home: HomeBody(gotData: gotData, notesPreview: notesPreview),
     );
   }
 }
@@ -46,20 +44,23 @@ class HomeBody extends StatelessWidget {
   final List<Widget> notesPreview;
   @override
   Widget build(BuildContext context) {
-    return Container(
-        color: Theme.of(context).colorScheme.background,
-        margin: const EdgeInsets.only(top: 5, bottom: 5, left: 5, right: 5),
-        child: gotData
-            ? MasonryGridView.count(
-                crossAxisCount: 2,
-                mainAxisSpacing: 10,
-                crossAxisSpacing: 10,
-                itemBuilder: (context, index) {
-                  if (index == notesPreview.length) return Container();
-                  return notesPreview[index];
-                },
-                itemCount: notesPreview.length,
-              )
-            : const MyPreloader());
+    return Scaffold(
+      backgroundColor: Theme.of(context).colorScheme.background,
+        appBar: const MyAppBar(),
+        body: Container(            
+            margin: const EdgeInsets.only(top: 5, bottom: 5, left: 5, right: 5),
+            child: gotData
+                ? MasonryGridView.count(
+                    crossAxisCount: 2,
+                    mainAxisSpacing: 10,
+                    crossAxisSpacing: 10,
+                    itemBuilder: (context, index) {
+                      if (index == notesPreview.length) return Container();
+                      return notesPreview[index];
+                    },
+                    itemCount: notesPreview.length,
+                  )
+                : const MyPreloader()),
+        bottomNavigationBar: const MyBottomNavBar());
   }
 }

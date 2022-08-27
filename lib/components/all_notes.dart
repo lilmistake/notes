@@ -27,7 +27,6 @@ noteContainer({required Note currentNote, context}) {
   return Builder(builder: (context) {
     return InkWell(
         onTap: () {
-          
           Navigator.of(context).pushAndRemoveUntil(
             pageTransition(
                 destination: FullScreenNote(currentNote: currentNote),
@@ -37,7 +36,7 @@ noteContainer({required Note currentNote, context}) {
         },
         child: Container(
           decoration: BoxDecoration(
-              borderRadius: const BorderRadius.all(Radius.circular(10)),              
+              borderRadius: const BorderRadius.all(Radius.circular(10)),
               border: Border.all(
                   color: Theme.of(context).colorScheme.secondary, width: 3)),
           child: Column(
@@ -59,9 +58,12 @@ noteContainer({required Note currentNote, context}) {
                 ),
               ),
               Container(
+                decoration: BoxDecoration(
+                  borderRadius: const BorderRadius.only(bottomLeft: Radius.circular(10), bottomRight: Radius.circular(10)),
+                  color: Theme.of(context).colorScheme.primary,
+                ),
                 constraints: const BoxConstraints(maxHeight: double.infinity),
                 width: double.infinity,
-                color: Theme.of(context).colorScheme.primary,                
                 padding: const EdgeInsets.all(5),
                 child: Text(currentNote.description,
                     softWrap: false,

@@ -10,13 +10,15 @@ List<ThemeData> availableThemes = <ThemeData>[
             secondary: Colors.red,
             onPrimary: Colors.black,
             background: Colors.white,
+            onBackground: Colors.black,
             onSecondary: Colors.white)),
     ThemeData(
         colorScheme: const ColorScheme.light(
             primary: Colors.white,
             secondary: Colors.black,
             onPrimary: Colors.black,
-            background: Colors.white,
+            background: Color(0xff121212),
+            onBackground: Colors.white,
             onSecondary: Colors.white)),
     ThemeData(
         colorScheme: const ColorScheme.light(
@@ -24,5 +26,6 @@ List<ThemeData> availableThemes = <ThemeData>[
             secondary: Colors.blue,
             onPrimary: Colors.black,
             background: Colors.white,
+            onBackground: Colors.black,
             onSecondary: Colors.black))
 ];

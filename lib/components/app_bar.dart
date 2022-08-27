@@ -13,6 +13,7 @@ class MyAppBar extends StatelessWidget with PreferredSizeWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         AppBar(
+          backgroundColor: Theme.of(context).colorScheme.secondary,
           systemOverlayStyle: const SystemUiOverlayStyle(
               statusBarColor: blurple, statusBarBrightness: Brightness.dark),
           centerTitle: true,
@@ -24,7 +25,7 @@ class MyAppBar extends StatelessWidget with PreferredSizeWidget {
                       destination: const SettingsPage(),
                       direction: TransitionDirection.UP_TO_DOWN));
                 },
-                icon: const Icon(Icons.settings))
+                icon: Icon(Icons.settings, color: Theme.of(context).colorScheme.onSecondary,))
           ],
           title: const Text("📝", style: TextStyle(fontSize: 40)),
         ),

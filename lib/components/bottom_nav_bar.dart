@@ -8,11 +8,15 @@ class MyBottomNavBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton(
-      child: const Icon(
-        Icons.add,
-        size: 50,
+    return ElevatedButton(            
+      style: ButtonStyle(
+        backgroundColor: MaterialStateProperty.all(Theme.of(context).colorScheme.secondary),
       ),
+        child: Icon(
+          Icons.add,
+          size: 50,
+          color: Theme.of(context).colorScheme.onSecondary,
+        ),      
       onPressed: () {
         
         Navigator.of(context).push(pageTransition(destination: const CreateNote(), direction: TransitionDirection.DOWN_TO_UP));

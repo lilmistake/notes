@@ -21,7 +21,11 @@ class _SettingsPageState extends State<SettingsPage> {
     activeIndex = context.watch<ThemeChanger>().currentThemeIndex;
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Settings"),
+        iconTheme: IconThemeData(
+          color:Theme.of(context).colorScheme.onSecondary
+        ),
+        backgroundColor: Theme.of(context).colorScheme.secondary,
+        title: Text("Settings", style: TextStyle(color: Theme.of(context).colorScheme.onSecondary),),
       ),
       backgroundColor: Theme.of(context).colorScheme.background,
       body: Container(
@@ -29,9 +33,9 @@ class _SettingsPageState extends State<SettingsPage> {
         child: Column(children: [
           Container(
             alignment: Alignment.centerLeft,
-            child: const Text(
+            child: Text(
               "Select theme:",
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25, color: Theme.of(context).colorScheme.onBackground),
             ),
           ),
           Divider(

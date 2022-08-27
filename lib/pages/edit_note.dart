@@ -23,9 +23,15 @@ class _EditNoteState extends State<EditNote> {
     return Scaffold(
         appBar: AppBar(
           title: const Text("Edit note"),
+          backgroundColor: Theme.of(context).colorScheme.secondary,
+          titleTextStyle: TextStyle(color: Theme.of(context).colorScheme.onSecondary),
+          iconTheme: IconThemeData(
+            color: Theme.of(context).colorScheme.onSecondary
+          ),
         ),
-        body: Container(
-          margin: const EdgeInsets.only(top: 20),
+        backgroundColor: Theme.of(context).colorScheme.background,
+        body: Container(          
+          margin: const EdgeInsets.all(20),
           child: Form(
             key: _formKey,
             child: ListView(
@@ -45,8 +51,9 @@ class _EditNoteState extends State<EditNote> {
                     ),
                     child: IconButton(
                         padding: EdgeInsets.zero,
-                        icon: const Icon(
+                        icon: Icon(
                           Icons.navigate_next_outlined,
+                          color: Theme.of(context).colorScheme.onBackground,
                           size: 50,
                           
                         ),

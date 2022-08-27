@@ -18,10 +18,14 @@ class _CreateNoteState extends State<CreateNote> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: const Text("Create new note"),
+          iconTheme: IconThemeData(
+            color: Theme.of(context).colorScheme.onSecondary
+          ),
+          title: Text("Create new note", style: TextStyle(color: Theme.of(context).colorScheme.onSecondary),),
+          backgroundColor: Theme.of(context).colorScheme.secondary,
         ),
-        
-        body: Container(
+        backgroundColor: Theme.of(context).colorScheme.background,
+        body: Container(          
           margin: const EdgeInsets.all(20),
           child: Form(
             key: _formKey,
@@ -36,14 +40,15 @@ class _CreateNoteState extends State<CreateNote> {
                 ),
                 const Divider(),
                 Container(
-                    decoration: const BoxDecoration(
+                    decoration: const BoxDecoration(                      
                       shape: BoxShape.circle,
                     ),
                     child: IconButton(
                         padding: EdgeInsets.zero,
-                        icon: const Icon(
+                        icon: Icon(
                           Icons.navigate_next_outlined,
                           size: 50,
+                          color: Theme.of(context).colorScheme.onBackground,
                         ),
                         onPressed: () async {
                           if (!_formKey.currentState!.validate()) return;
