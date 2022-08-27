@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:notes/components/components.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
-
+import 'package:provider/provider.dart';
+import 'package:notes/main.dart';
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
 
@@ -28,13 +29,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     if (!gotData) getNotesPreview();
     return MaterialApp(
-      theme: ThemeData(
-          colorScheme: const ColorScheme.light(
-              primary: Colors.white,
-              secondary: Colors.red,
-              onPrimary: Colors.black,
-              background: Colors.white,
-              onSecondary: Colors.white)),
+      theme: context.watch<ThemeChanger>().theme,
       debugShowCheckedModeBanner: false,
       home: Scaffold(
           appBar: const MyAppBar(),

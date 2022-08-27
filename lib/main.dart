@@ -1,7 +1,10 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:notes/pages/home.dart';
+import 'package:notes/utility/color_pallet.dart';
 import 'firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:provider/provider.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -9,7 +12,29 @@ Future<void> main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  runApp(const MyApp());
+  runApp(MultiProvider(
+    providers: [
+      ChangeNotifierProvider(create: (_) => ThemeChanger()),
+    ],
+    child: const HomePage(),
+  ));
+}
+
+class ThemeChanger with ChangeNotifier, DiagnosticableTreeMixin {
+  List<ThemeData> avaiableThemes = availableThemes;
+  int currentThemeIndex = 0;
+  ThemeData get theme => avaiableThemes[currentThemeIndex];
+
+  void setTheme(index) {
+    currentThemeIndex = index;
+    notifyListeners();
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties.add(IntProperty('currentThemeIndex', currentThemeIndex));
+  }
 }
 
 class MyApp extends StatelessWidget {

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:notes/main.dart';
 
 class SettingsPage extends StatefulWidget {
   const SettingsPage({Key? key}) : super(key: key);
@@ -9,20 +11,21 @@ class SettingsPage extends StatefulWidget {
 
 class _SettingsPageState extends State<SettingsPage> {
   int activeIndex = 0;
-  
   void themeSelected(index) {
     activeIndex = index;
     setState(() {});
   }
+
   @override
-  Widget build(BuildContext context) {    
-    return Scaffold(      
+  Widget build(BuildContext context) {
+    activeIndex = context.watch<ThemeChanger>().currentThemeIndex;
+    return Scaffold(
       appBar: AppBar(
         title: const Text("Settings"),
       ),
+      backgroundColor: Theme.of(context).colorScheme.background,
       body: Container(
         margin: const EdgeInsets.all(20),
-        color: Theme.of(context).colorScheme.primary,
         child: Column(children: [
           Container(
             alignment: Alignment.centerLeft,
@@ -36,7 +39,10 @@ class _SettingsPageState extends State<SettingsPage> {
             thickness: 1,
           ),
           Row(
-            children: themeContainers(activeIndex: activeIndex, context: context, selectedTheme: themeSelected),
+            children: themeContainers(
+                activeIndex: activeIndex,
+                context: context,
+                selectedTheme: themeSelected),
           )
         ]),
       ),
@@ -44,22 +50,28 @@ class _SettingsPageState extends State<SettingsPage> {
   }
 }
 
-themeContainers({context, activeIndex, selectedTheme}) {
-  List<Color> themeColors = <Color>[Colors.black, Colors.red, Colors.blue];
+themeContainers({required BuildContext context, activeIndex, selectedTheme}) {
+  List<Color> themeColors = <Color>[Colors.red, Colors.black, Colors.blue];
   List<Expanded> themes = <Expanded>[];
   for (var i = 0; i < themeColors.length; i++) {
     Expanded currentExpanded = Expanded(
         child: Material(
+            color: Theme.of(context).colorScheme.background,
             child: InkWell(
+                borderRadius: BorderRadius.circular(20),
                 onTap: () {
+                  context.read<ThemeChanger>().setTheme(i);
                   selectedTheme(i);
-                  print("clicked ${themeColors[i]}");                                    
+                  activeIndex = i;
+                  ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                    content: Text("Theme changed successfully!"),
+                  ));
                 },
                 child: Container(
                     margin: const EdgeInsets.all(5),
                     child: Ink(
                       decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
+                          borderRadius: BorderRadius.circular(20),
                           color: themeColors[i],
                           border: Border.all(
                               color: activeIndex == i
