@@ -10,7 +10,7 @@ class MyPreloader extends StatelessWidget {
             width: 100,
             height: 100,
             child: CircularProgressIndicator(
-              color: Theme.of(context).colorScheme.primary,
+              color: Theme.of(context).colorScheme.onBackground,
               strokeWidth: 7,
             )));
   }

@@ -79,8 +79,8 @@ themeContainers({required BuildContext context, activeIndex, selectedTheme}) {
                           color: themeColors[i],
                           border: Border.all(
                               color: activeIndex == i
-                                  ? Colors.black
-                                  : Theme.of(context).colorScheme.primary,
+                                  ? Theme.of(context).colorScheme.onBackground
+                                  : Theme.of(context).colorScheme.background,
                               width: 3)),
                       height: 80,
                     )))));
