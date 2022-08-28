@@ -18,14 +18,16 @@ class _CreateNoteState extends State<CreateNote> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          iconTheme: IconThemeData(
-            color: Theme.of(context).colorScheme.onSecondary
+          iconTheme:
+              IconThemeData(color: Theme.of(context).colorScheme.onSecondary),
+          title: Text(
+            "Create new note",
+            style: TextStyle(color: Theme.of(context).colorScheme.onSecondary),
           ),
-          title: Text("Create new note", style: TextStyle(color: Theme.of(context).colorScheme.onSecondary),),
           backgroundColor: Theme.of(context).colorScheme.secondary,
         ),
         backgroundColor: Theme.of(context).colorScheme.background,
-        body: Container(          
+        body: Container(
           margin: const EdgeInsets.all(20),
           child: Form(
             key: _formKey,
@@ -40,7 +42,7 @@ class _CreateNoteState extends State<CreateNote> {
                 ),
                 const Divider(),
                 Container(
-                    decoration: const BoxDecoration(                      
+                    decoration: const BoxDecoration(
                       shape: BoxShape.circle,
                     ),
                     child: IconButton(
@@ -54,12 +56,15 @@ class _CreateNoteState extends State<CreateNote> {
                           if (!_formKey.currentState!.validate()) return;
                           final note = <String, dynamic>{
                             'title': titleController.text,
-                            'desc': descriptionController.text
+                            'desc': descriptionController.text,
+                            'ts': DateTime.now().millisecondsSinceEpoch
                           };
                           addNote(note: note);
-                          await Navigator.of(context).pushAndRemoveUntil(pageTransition(
-                              destination: const HomePage(),
-                              direction: TransitionDirection.LEFT_TO_RIGHT), (route)=>false);
+                          await Navigator.of(context).pushAndRemoveUntil(
+                              pageTransition(
+                                  destination: const HomePage(),
+                                  direction: TransitionDirection.LEFT_TO_RIGHT),
+                              (route) => false);
                         })),
               ],
             ),

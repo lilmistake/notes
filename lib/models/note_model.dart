@@ -1,10 +1,10 @@
 class Note {
   String title;
   String description;
-  int sno;
   String refID;
+  int ts;
 
-  Note({this.sno = 0, this.title = '', this.description = '', required this.refID});
+  Note({this.ts = 0,this.title = '', this.description = '', required this.refID});
 
   isNull() {
     if (title.toString().isEmpty || description.toString().isEmpty) return true;

@@ -4,7 +4,8 @@ import 'package:notes/models/models.dart';
 
 class FullScreenNote extends StatelessWidget {
   final Note currentNote;
-  const FullScreenNote({Key? key, required this.currentNote}) : super(key: key);
+  final int index;
+  const FullScreenNote({Key? key, required this.currentNote, required this.index}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -12,16 +13,20 @@ class FullScreenNote extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.secondary,
         elevation: 0,
-        iconTheme: IconThemeData(color: Theme.of(context).colorScheme.onSecondary),
-        title: Text('${currentNote.sno.toString()}. ${currentNote.title}'),
-        titleTextStyle: TextStyle(color: Theme.of(context).colorScheme.onSecondary),
+        iconTheme:
+            IconThemeData(color: Theme.of(context).colorScheme.onSecondary),
+        title: Text('${index.toString()}. ${currentNote.title}'),
+        titleTextStyle:
+            TextStyle(color: Theme.of(context).colorScheme.onSecondary),
         actions: [
           IconButton(
-            icon: const Icon(Icons.edit),            
+            icon: const Icon(Icons.edit),
             onPressed: () {
               Navigator.of(context).push(PageRouteBuilder(
                   pageBuilder: ((context, animation, secondaryAnimation) =>
-                      EditNote(currentNote: currentNote,))));
+                      EditNote(
+                        currentNote: currentNote,
+                      ))));
             },
           ),
         ],
@@ -37,7 +42,9 @@ class FullScreenNote extends StatelessWidget {
                     color: Theme.of(context).colorScheme.secondary,
                     child: Text(
                       currentNote.title,
-                      style: TextStyle(color: Theme.of(context).colorScheme.onSecondary, fontSize: 40),
+                      style: TextStyle(
+                          color: Theme.of(context).colorScheme.onSecondary,
+                          fontSize: 40),
                     )),
               ),
             ],
@@ -50,7 +57,9 @@ class FullScreenNote extends StatelessWidget {
                   alignment: Alignment.topLeft,
                   child: Text(
                     currentNote.description,
-                    style: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: 20),
+                    style: TextStyle(
+                        color: Theme.of(context).colorScheme.onBackground,
+                        fontSize: 20),
                   ),
                 ),
               ),
