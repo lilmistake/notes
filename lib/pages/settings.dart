@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:notes/utility/utility.dart';
 import 'package:provider/provider.dart';
 import 'package:notes/main.dart';
 
@@ -21,11 +22,13 @@ class _SettingsPageState extends State<SettingsPage> {
     activeIndex = context.watch<ThemeChanger>().currentThemeIndex;
     return Scaffold(
       appBar: AppBar(
-        iconTheme: IconThemeData(
-          color:Theme.of(context).colorScheme.onSecondary
-        ),
+        iconTheme:
+            IconThemeData(color: Theme.of(context).colorScheme.onSecondary),
         backgroundColor: Theme.of(context).colorScheme.secondary,
-        title: Text("Settings", style: TextStyle(color: Theme.of(context).colorScheme.onSecondary),),
+        title: Text(
+          "Settings",
+          style: TextStyle(color: Theme.of(context).colorScheme.onSecondary),
+        ),
       ),
       backgroundColor: Theme.of(context).colorScheme.background,
       body: Container(
@@ -35,7 +38,10 @@ class _SettingsPageState extends State<SettingsPage> {
             alignment: Alignment.centerLeft,
             child: Text(
               "Select theme:",
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25, color: Theme.of(context).colorScheme.onBackground),
+              style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 25,
+                  color: Theme.of(context).colorScheme.onBackground),
             ),
           ),
           Divider(
@@ -65,6 +71,7 @@ themeContainers({required BuildContext context, activeIndex, selectedTheme}) {
                 borderRadius: BorderRadius.circular(20),
                 onTap: () {
                   context.read<ThemeChanger>().setTheme(i);
+                  editTheme(i);
                   selectedTheme(i);
                   activeIndex = i;
                   ScaffoldMessenger.of(context).showSnackBar(const SnackBar(

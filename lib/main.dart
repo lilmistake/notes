@@ -1,17 +1,19 @@
+import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:notes/pages/home.dart';
-import 'package:notes/utility/color_pallet.dart';
-import 'firebase_options.dart';
-import 'package:firebase_core/firebase_core.dart';
+import 'package:notes/utility/utility.dart';
+import 'package:sqflite/sqflite.dart';
 import 'package:provider/provider.dart';
+import 'package:sqflite_common_ffi/sqflite_ffi.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  if (Platform.isLinux) {
+    sqfliteFfiInit();
+    databaseFactory = databaseFactoryFfi;
+  }
 
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
   runApp(MultiProvider(
     providers: [
       ChangeNotifierProvider(create: (_) => ThemeChanger()),
@@ -24,6 +26,12 @@ class ThemeChanger with ChangeNotifier, DiagnosticableTreeMixin {
   List<ThemeData> avaiableThemes = availableThemes;
   int currentThemeIndex = 0;
   ThemeData get theme => avaiableThemes[currentThemeIndex];
+  ThemeChanger() {
+    setCurrentTheme();
+  }
+  void setCurrentTheme() async {
+    currentThemeIndex = await getCurrentTheme();
+  }
 
   void setTheme(index) {
     currentThemeIndex = index;
