@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:notes/components/components.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:provider/provider.dart';
 import 'package:notes/main.dart';
@@ -11,8 +10,6 @@ class HomePage extends StatefulWidget {
   @override
   State<HomePage> createState() => _HomePageState();
 }
-
-var db = FirebaseFirestore.instance;
 
 class _HomePageState extends State<HomePage> {
   var gotData = false;

@@ -7,19 +7,19 @@ import 'package:notes/utility/utility.dart';
 Future notesPreviewMaker(context) async {
   List<Widget> notesContainerList = [];
 
-  await getAllNotes().then((notesData) {
-    for (var i = 0; i < notesData.docs.length; i++) {
-      var doc = notesData.docs[i].data();
+  await getAllNotes().then((notesData) {    
+    for (var i = 0; i < notesData.length; i++) {
+      var doc = notesData[i];
       Note currentNote = Note(
           title: doc['title'],
-          description: doc['desc'],
+          description: doc['description'],
           ts: doc['ts'],
-          refID: notesData.docs[i].reference.id);
+          refID: doc['ts'].toString());
       if (currentNote.isNull()) continue;
       notesContainerList.add(noteContainer(
           currentNote: currentNote,
           context: context,
-          index: notesData.docs.length - i));
+          index: notesData.length - i));
     }
   });
   return notesContainerList;
@@ -71,7 +71,7 @@ noteContainer({required Note currentNote, context, index}) {
                   constraints: const BoxConstraints(maxHeight: double.infinity),
                   width: double.infinity,
                   padding: const EdgeInsets.all(5),
-                  child: Column(                    
+                  child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(currentNote.description,
@@ -81,8 +81,14 @@ noteContainer({required Note currentNote, context, index}) {
                           style: TextStyle(
                               fontSize: 20,
                               color: Theme.of(context).colorScheme.onPrimary)),
-                              const Divider(thickness: 1,),
-                      Text('${t.day}/${t.month}/${t.year} at ${t.hour}:${t.minute}', style: TextStyle(fontSize: 12, color: Colors.grey.shade800),)
+                      const Divider(
+                        thickness: 1,
+                      ),
+                      Text(
+                        '${t.day}/${t.month}/${t.year} at ${t.hour}:${t.minute}',
+                        style: TextStyle(
+                            fontSize: 12, color: Colors.grey.shade800),
+                      )
                     ],
                   )),
             ],

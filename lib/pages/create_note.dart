@@ -56,7 +56,7 @@ class _CreateNoteState extends State<CreateNote> {
                           if (!_formKey.currentState!.validate()) return;
                           final note = <String, dynamic>{
                             'title': titleController.text,
-                            'desc': descriptionController.text,
+                            'description': descriptionController.text,
                             'ts': DateTime.now().millisecondsSinceEpoch
                           };
                           addNote(note: note);

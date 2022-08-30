@@ -3,6 +3,7 @@ import 'package:notes/pages/pages.dart';
 import 'package:notes/utility/page_transition.dart';
 import 'package:notes/utility/utility.dart';
 import 'package:notes/models/models.dart';
+import 'home.dart';
 
 class EditNote extends StatefulWidget {
   final Note currentNote;
@@ -55,18 +56,22 @@ class _EditNoteState extends State<EditNote> {
                           Icons.navigate_next_outlined,
                           color: Theme.of(context).colorScheme.onBackground,
                           size: 50,
-                          
                         ),
                         onPressed: () async {
                           if (!_formKey.currentState!.validate()) return;
                           final note = <String, dynamic>{
                             'title': titleController.text,
-                            'desc': descriptionController.text
-                          };
+                            'description  ': descriptionController.text,
+                            'ts': widget.currentNote.ts
+                          };                       
+
                           editNote(note: note, ref: widget.currentNote.refID);
-                          await Navigator.of(context).pushAndRemoveUntil(pageTransition(
-                              destination: const HomePage(),
-                              direction: TransitionDirection.LEFT_TO_RIGHT), (route)=>false);
+                          Navigator.of(context).pushAndRemoveUntil(
+                              pageTransition(
+                                  destination: const HomePage(),
+                                  direction: TransitionDirection.LEFT_TO_RIGHT),
+                              (route) => false);
+                              
                         })),
               ],
             ),
