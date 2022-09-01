@@ -7,14 +7,14 @@ import 'package:notes/utility/utility.dart';
 Future notesPreviewMaker(context) async {
   List<Widget> notesContainerList = [];
 
-  await getAllNotes().then((notesData) {    
+  await getAllNotes().then((notesData) {
     for (var i = 0; i < notesData.length; i++) {
       var doc = notesData[i];
       Note currentNote = Note(
-          title: doc['title'],
-          description: doc['description'],
-          ts: doc['ts'],
-          refID: doc['ts'].toString());
+        title: doc['title'],
+        description: doc['description'],
+        ts: doc['ts'],
+      );
       if (currentNote.isNull()) continue;
       notesContainerList.add(noteContainer(
           currentNote: currentNote,
@@ -27,13 +27,16 @@ Future notesPreviewMaker(context) async {
 
 noteContainer({required Note currentNote, context, index}) {
   var t = DateTime.fromMillisecondsSinceEpoch(currentNote.ts);
+  String timeOfNoteCreation =
+      '${t.day}/${t.month}/${t.year} at ${t.hour}:${t.minute}';
   return Builder(builder: (context) {
     return InkWell(
         onTap: () {
+          // use a hero here
           Navigator.of(context).pushAndRemoveUntil(
             pageTransition(
                 destination:
-                    FullScreenNote(currentNote: currentNote, index: index),
+                    FullScreenNote(currentNote: currentNote, index: index, time: timeOfNoteCreation),
                 direction: TransitionDirection.DOWN_TO_UP),
             (route) => route.isFirst,
           );
@@ -85,7 +88,7 @@ noteContainer({required Note currentNote, context, index}) {
                         thickness: 1,
                       ),
                       Text(
-                        '${t.day}/${t.month}/${t.year} at ${t.hour}:${t.minute}',
+                        timeOfNoteCreation,
                         style: TextStyle(
                             fontSize: 12, color: Colors.grey.shade800),
                       )
