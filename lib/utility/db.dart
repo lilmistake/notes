@@ -32,7 +32,12 @@ Future addNote({note}) async {
 
 Future editNote({note, ref}) async {
   Database db = await DatabaseHelper.getDb();
-  db.update('notes', note, where: 'ts = ${note['ts'].toString()}');
+  db.update('notes', note, where: 'ts = ${note['ts'].toString()}');  
+}
+
+Future deleteNote({ts}) async {
+  Database db = await DatabaseHelper.getDb();
+  db.delete('notes', where: 'ts = ${ts.toString()}');
 }
 
 Future getAllNotes() async {
