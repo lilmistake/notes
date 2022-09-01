@@ -65,7 +65,7 @@ class _EditNoteState extends State<EditNote> {
                             'ts': widget.currentNote.ts
                           };                       
 
-                          editNote(note: note, ref: widget.currentNote.refID);
+                          editNote(note: note);
                           Navigator.of(context).pushAndRemoveUntil(
                               pageTransition(
                                   destination: const HomePage(),
