@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:notes/utility/utility.dart';
 import 'package:provider/provider.dart';
-import 'package:notes/main.dart';
+import 'package:notes/pages/settings/theme_changer.dart';
 
 class SettingsPage extends StatefulWidget {
   const SettingsPage({Key? key}) : super(key: key);

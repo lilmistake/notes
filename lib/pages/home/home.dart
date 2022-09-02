@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:notes/components/components.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:provider/provider.dart';
-import 'package:notes/main.dart';
+import 'components/components.dart';
+import 'package:notes/pages/settings/theme_changer.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -42,9 +42,9 @@ class HomeBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Theme.of(context).colorScheme.background,
+        backgroundColor: Theme.of(context).colorScheme.background,
         appBar: const MyAppBar(),
-        body: Container(            
+        body: Container(
             margin: const EdgeInsets.only(top: 5, bottom: 5, left: 5, right: 5),
             child: gotData
                 ? MasonryGridView.count(

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:notes/utility/page_transition.dart';
-import '../pages/pages.dart';
+import '../../pages.dart';
 
 class MyBottomNavBar extends StatelessWidget {    
   const MyBottomNavBar({Key? key}) : super(key: key);

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:notes/pages/pages.dart';
-import 'package:notes/utility/page_transition.dart';
 import 'package:notes/utility/utility.dart';
 import 'package:notes/models/models.dart';
 

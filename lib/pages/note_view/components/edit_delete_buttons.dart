@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-
-import '../pages/pages.dart';
-import '../utility/utility.dart';
+import 'package:notes/pages/pages.dart';
+import 'package:notes/utility/utility.dart';
 
 class NoteActionButton extends StatelessWidget {
   final IconData icon;

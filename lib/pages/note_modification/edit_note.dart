@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:notes/pages/pages.dart';
-import 'package:notes/utility/page_transition.dart';
 import 'package:notes/utility/utility.dart';
 import 'package:notes/models/models.dart';
-import 'home.dart';
 
 class EditNote extends StatefulWidget {
   final Note currentNote;
@@ -25,13 +23,13 @@ class _EditNoteState extends State<EditNote> {
         appBar: AppBar(
           title: const Text("Edit note"),
           backgroundColor: Theme.of(context).colorScheme.secondary,
-          titleTextStyle: TextStyle(color: Theme.of(context).colorScheme.onSecondary),
-          iconTheme: IconThemeData(
-            color: Theme.of(context).colorScheme.onSecondary
-          ),
+          titleTextStyle:
+              TextStyle(color: Theme.of(context).colorScheme.onSecondary),
+          iconTheme:
+              IconThemeData(color: Theme.of(context).colorScheme.onSecondary),
         ),
         backgroundColor: Theme.of(context).colorScheme.background,
-        body: Container(          
+        body: Container(
           margin: const EdgeInsets.all(20),
           child: Form(
             key: _formKey,
@@ -48,7 +46,6 @@ class _EditNoteState extends State<EditNote> {
                 Container(
                     decoration: const BoxDecoration(
                       shape: BoxShape.circle,
-                      
                     ),
                     child: IconButton(
                         padding: EdgeInsets.zero,
@@ -63,7 +60,7 @@ class _EditNoteState extends State<EditNote> {
                             'title': titleController.text,
                             'description  ': descriptionController.text,
                             'ts': widget.currentNote.ts
-                          };                       
+                          };
 
                           editNote(note: note);
                           Navigator.of(context).pushAndRemoveUntil(
@@ -71,7 +68,6 @@ class _EditNoteState extends State<EditNote> {
                                   destination: const HomePage(),
                                   direction: TransitionDirection.LEFT_TO_RIGHT),
                               (route) => false);
-                              
                         })),
               ],
             ),

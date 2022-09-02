@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:notes/pages/settings.dart';
+import 'package:notes/pages/settings/settings_page.dart';
 import 'package:notes/utility/color_pallet.dart';
 import 'package:notes/utility/page_transition.dart';
 

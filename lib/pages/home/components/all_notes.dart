@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:notes/models/models.dart';
-import 'package:notes/pages/note_fullscreen.dart';
-import 'package:notes/utility/page_transition.dart';
+import 'package:notes/pages/pages.dart';
 import 'package:notes/utility/utility.dart';
 
 Future notesPreviewMaker(context) async {
@@ -31,8 +30,7 @@ noteContainer({required Note currentNote, context, index}) {
       '${t.day}/${t.month}/${t.year} at ${t.hour}:${t.minute}';
   return Builder(builder: (context) {
     return InkWell(
-        onTap: () {
-          // use a hero here
+        onTap: () {          
           Navigator.of(context).pushAndRemoveUntil(
             pageTransition(
                 destination:
