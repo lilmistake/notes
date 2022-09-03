@@ -10,7 +10,7 @@ List<ThemeData> availableThemes = <ThemeData>[
             primary: Colors.white,
             secondary: Colors.red,
             onPrimary: Colors.black,
-            background: Colors.white,
+            background: Color.fromARGB(255, 255, 213, 213),
             onBackground: Colors.black,
             onSecondary: Colors.white)),
     ThemeData(
