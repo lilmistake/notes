@@ -42,7 +42,7 @@ Future deleteNote({ts}) async {
 
 Future getAllNotes() async {
   Database db = await DatabaseHelper.getDb();
-  var res = await db.query('notes', orderBy: 'ts DESC');
+  var res = await db.query('notes', orderBy: 'ts ASC');
   return res;
 }
 
