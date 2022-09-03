@@ -1,55 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_quill/flutter_quill.dart' hide Text;
 import 'package:notes/pages/note_view/components/appbar.dart';
 import 'package:notes/models/models.dart';
 
-class RuledPage extends CustomPainter {
-  final BuildContext context;
-  final String text;
-  final TextStyle style;
-  RuledPage({required this.context, required this.text, required this.style});
-
-  @override
-  void paint(Canvas canvas, Size size) {
-    final blackLines = Paint()
-      ..color = Theme.of(context).colorScheme.onSecondary
-      ..strokeWidth = 0.5;
-
-    TextPainter t = TextPainter(
-        text: TextSpan(text: text, style: style),
-        textDirection: TextDirection.ltr);
-    t.layout(
-        maxWidth:
-            MediaQuery.of(context).size.width - 60); // - margin on both sides
-    for (var i = 0; i < t.computeLineMetrics().length; i++) {
-      canvas.drawLine(Offset(0, size.height * (i + 1) * 0.2),
-          Offset(size.width, size.height * (i + 1) * 0.2), blackLines);
-    }
-  }
-
-  @override
-  bool shouldRepaint(RuledPage oldDelegate) {
-    return false;
-  }
-}
-
 class FullScreenNote extends StatelessWidget {
   final Note currentNote;
-  late TextStyle noteDescStyle;
   final int index;
   final String time;
-  FullScreenNote(
+  final QuillController controller;
+  const FullScreenNote(
       {Key? key,
       required this.currentNote,
       required this.index,
+      required this.controller,
       required this.time})
       : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    noteDescStyle = TextStyle(
-        fontSize: 25,
-        height: 1.2,
-        color: Theme.of(context).colorScheme.onSecondary);
+  Widget build(BuildContext context) {    
     return Scaffold(
       appBar: NoteViewAppBar(
           currentNote: currentNote, index: index, timeAsString: time),
@@ -79,23 +47,20 @@ class FullScreenNote extends StatelessWidget {
                   ],
                 ),
                 const Divider(height: 10),
-                Stack(
-                  children: [
-                    CustomPaint(
-                        foregroundPainter: RuledPage(
-                            context: context,
-                            text: currentNote.description,
-                            style: noteDescStyle),
-                        child: Container(
-                          height: (noteDescStyle.height! * 100) *
-                              (noteDescStyle.fontSize! /
-                                  20), // gap between lines
-                        )),
-                    Text(
-                      currentNote.description,
-                      style: noteDescStyle,
-                    )
-                  ],
+                DefaultTextStyle(
+                  style: TextStyle(
+                      color: Theme.of(context).colorScheme.onSecondary),
+                  child: QuillEditor(
+                    controller: controller,
+                    scrollController: ScrollController(),
+                    showCursor: false,
+                    scrollable: true,
+                    focusNode: FocusNode(),
+                    autoFocus: true,
+                    readOnly: true,
+                    expands: false,
+                    padding: EdgeInsets.zero,
+                  ),
                 ),
               ],
             ),
