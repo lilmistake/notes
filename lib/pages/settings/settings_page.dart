@@ -31,44 +31,37 @@ class _SettingsPageState extends State<SettingsPage> {
         ),
       ),
       backgroundColor: Theme.of(context).colorScheme.background,
-      body: Container(
-        margin: const EdgeInsets.all(20),
-        child: Column(children: [
-          Container(
-            alignment: Alignment.centerLeft,
-            child: Text(
-              "Select theme:",
-              style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 25,
-                  color: Theme.of(context).colorScheme.onBackground),
-            ),
+      body: Column(children: [
+        Container(
+          margin: const EdgeInsets.only(top: 20),
+          alignment: Alignment.center,
+          child: Text(
+            "Color Scheme",
+            style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 25,
+                color: Theme.of(context).colorScheme.onBackground),
           ),
-          Divider(
-            color: Theme.of(context).colorScheme.onPrimary,
-            thickness: 1,
-          ),
-          Row(
-            children: themeContainers(
-                activeIndex: activeIndex,
-                context: context,
-                selectedTheme: themeSelected),
-          )
-        ]),
-      ),
+        ),
+        Row(
+          children: themeContainers(
+              activeIndex: activeIndex,
+              context: context,
+              selectedTheme: themeSelected),
+        ),
+      ]),
     );
   }
 }
 
 themeContainers({required BuildContext context, activeIndex, selectedTheme}) {
-  List<Color> themeColors = <Color>[Colors.red, Colors.black, Colors.blue];
   List<Expanded> themes = <Expanded>[];
-  for (var i = 0; i < themeColors.length; i++) {
+  for (var i = 0; i < 3; i++) {
     Expanded currentExpanded = Expanded(
         child: Material(
             color: Theme.of(context).colorScheme.background,
             child: InkWell(
-                borderRadius: BorderRadius.circular(20),
+                borderRadius: BorderRadius.circular(10),
                 onTap: () {
                   context.read<ThemeChanger>().setTheme(i);
                   editTheme(i);
@@ -80,16 +73,22 @@ themeContainers({required BuildContext context, activeIndex, selectedTheme}) {
                 },
                 child: Container(
                     margin: const EdgeInsets.all(5),
-                    child: Ink(
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(20),
-                          color: themeColors[i],
-                          border: Border.all(
-                              color: activeIndex == i
-                                  ? Theme.of(context).colorScheme.onBackground
-                                  : Theme.of(context).colorScheme.background,
-                              width: 3)),
-                      height: 80,
+                    decoration: BoxDecoration(
+                        boxShadow: const [
+                          BoxShadow(
+                              color: Colors.black,
+                              blurRadius: 5,
+                              offset: Offset(5, 5))
+                        ],
+                        borderRadius: BorderRadius.circular(10),
+                        border: Border.all(
+                            color: activeIndex == i
+                                ? Colors.white
+                                : Colors.transparent,
+                            width: 3)),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(7),
+                      child: Image.asset('assets/images/${i + 1}.png'),
                     )))));
     themes.add(currentExpanded);
   }

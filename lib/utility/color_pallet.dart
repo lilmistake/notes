@@ -6,7 +6,7 @@ const Color lightblack = Color(0xff191919);
 List<ThemeData> availableThemes = <ThemeData>[
    ThemeData(
     fontFamily: 'ubuntu',
-        colorScheme: const ColorScheme.light(        
+        colorScheme: const ColorScheme.light(
             primary: Colors.white,
             secondary: Colors.red,
             onPrimary: Colors.black,
@@ -26,9 +26,9 @@ List<ThemeData> availableThemes = <ThemeData>[
       fontFamily: 'ubuntu',
         colorScheme: const ColorScheme.light(
             primary: Colors.white,
-            secondary: Colors.blue,
+            secondary: Colors.grey,
             onPrimary: Colors.black,
             background: Colors.white,
             onBackground: Colors.black,
-            onSecondary: Colors.black))
+            onSecondary: Colors.black)),
 ];

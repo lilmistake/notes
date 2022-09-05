@@ -11,6 +11,9 @@ class ThemeChanger with ChangeNotifier, DiagnosticableTreeMixin {
   }
   void setCurrentTheme() async {
     currentThemeIndex = await getCurrentTheme();
+    if (currentThemeIndex >= availableThemes.length) {
+      currentThemeIndex = 0;
+    }
   }
 
   void setTheme(index) {
