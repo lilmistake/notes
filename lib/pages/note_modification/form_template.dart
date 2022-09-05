@@ -85,7 +85,8 @@ class CreateEditNote extends StatelessWidget {
               child: DefaultTextStyle(
                   style: TextStyle(
                       color: Theme.of(context).colorScheme.onSecondary,
-                      fontFamily: 'ubuntu'),
+                      fontFamily: Theme.of(context).textTheme.displayLarge!.fontFamily
+                      ),
                   child: QuillEditor(
                     controller: controller!,
                     scrollController: ScrollController(),

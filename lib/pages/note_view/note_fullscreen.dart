@@ -49,7 +49,9 @@ class FullScreenNote extends StatelessWidget {
                 const Divider(height: 10),
                 DefaultTextStyle(
                   style: TextStyle(
-                      color: Theme.of(context).colorScheme.onSecondary),
+                      color: Theme.of(context).colorScheme.onSecondary,                      
+                      fontFamily: Theme.of(context).textTheme.displayLarge!.fontFamily
+                      ),
                   child: QuillEditor(
                     controller: controller,
                     scrollController: ScrollController(),
