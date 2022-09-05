@@ -31,7 +31,7 @@ Future notesPreviewMaker(context) async {
   return notesContainerList.reversed.toList();
 }
 
-noteContainer({required Note currentNote, context, index}) {  
+noteContainer({required Note currentNote, context, index}) {
   List jsonData = [];
   try {
     jsonData = jsonDecode(currentNote.description);
@@ -47,97 +47,80 @@ noteContainer({required Note currentNote, context, index}) {
   String timeOfNoteCreation =
       '${t.day}/${t.month}/${t.year} at ${t.hour}:${t.minute}';
   return Builder(builder: (context) {
-    return Container(
-      decoration: BoxDecoration(
-          borderRadius: const BorderRadius.all(Radius.circular(10)),
-          border: Border.all(
-              color: Theme.of(context).colorScheme.secondary, width: 3)),
-      child: Column(
-        children: [
-          Container(
-            constraints: const BoxConstraints(maxHeight: double.infinity),
-            width: double.infinity,
-            padding: const EdgeInsets.all(5),
-            color: Theme.of(context).colorScheme.secondary,
-            child: InkWell(
-              onTap: () {
-                Navigator.of(context).pushAndRemoveUntil(
-                  pageTransition(
-                      destination: FullScreenNote(
-                          currentNote: currentNote,
-                          index: index,
-                          time: timeOfNoteCreation,
-                          controller: _controller),
-                      direction: TransitionDirection.DOWN_TO_UP),
-                  (route) => route.isFirst,
-                );
-              },
-              child: Row(
-                children: [
-                  Expanded(
-                    flex: 2,
-                    child: Text(
-                      '${index.toString()}. ${currentNote.title}',
-                      softWrap: false,
-                      maxLines: 6,
-                      overflow: TextOverflow.ellipsis,
-                      style: TextStyle(
-                          fontSize: 25,
-                          fontWeight: FontWeight.bold,
-                          color: Theme.of(context).colorScheme.onSecondary),
-                    ),
-                  ),
-                  Expanded(
-                    child: Container(
-                      width: 15,
-                      decoration: BoxDecoration(
-                          shape: BoxShape.rectangle,
-                          borderRadius: BorderRadius.circular(20),
-                          color: Theme.of(context).colorScheme.background),
-                      alignment: Alignment.centerRight,
-                      child: Center(
-                        child: Icon(
-                          Icons.remove_red_eye_sharp,
-                          size: 20,
-                          color: Theme.of(context).colorScheme.onBackground,
-                        ),
-                      ),
-                    ),
-                  )
-                ],
-              ),
-            ),
-          ),
-          Container(
-              decoration: BoxDecoration(
-                borderRadius: const BorderRadius.only(
-                    bottomLeft: Radius.circular(10),
-                    bottomRight: Radius.circular(10)),
-                color: Theme.of(context).colorScheme.primary,
-              ),
+    return InkWell(      
+      onTap: () {
+        Navigator.of(context).pushAndRemoveUntil(
+          pageTransition(
+              destination: FullScreenNote(
+                  currentNote: currentNote,
+                  index: index,
+                  time: timeOfNoteCreation,
+                  controller: _controller),
+              direction: TransitionDirection.DOWN_TO_UP),
+          (route) => route.isFirst,
+        );
+      },
+      child: Container(
+        decoration: BoxDecoration(
+            borderRadius: const BorderRadius.all(Radius.circular(10)),
+            border: Border.all(
+                color: Theme.of(context).colorScheme.secondary, width: 3)),
+        child: Column(
+          children: [
+            Container(
               constraints: const BoxConstraints(maxHeight: double.infinity),
               width: double.infinity,
               padding: const EdgeInsets.all(5),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+              color: Theme.of(context).colorScheme.secondary,
+              child: Wrap(
                 children: [
-                  Container(
-                    constraints: const BoxConstraints(maxHeight: 250),
-                    child: QuillEditor.basic(
-                      controller: _controller,
-                      readOnly: true,
-                    ),
-                  ),
-                  const Divider(
-                    thickness: 1,
-                  ),
                   Text(
-                    timeOfNoteCreation,
-                    style: TextStyle(fontSize: 12, color: Colors.grey.shade800),
-                  )
+                    '${index.toString()}. ${currentNote.title}',
+                    softWrap: false,
+                    maxLines: 6,
+                    overflow: TextOverflow.ellipsis,
+                    style: TextStyle(
+                        fontSize: 25,
+                        fontWeight: FontWeight.bold,
+                        color: Theme.of(context).colorScheme.onSecondary),
+                  ),
                 ],
-              )),
-        ],
+              ),
+            ),
+            Container(
+                decoration: BoxDecoration(
+                  borderRadius: const BorderRadius.only(
+                      bottomLeft: Radius.circular(10),
+                      bottomRight: Radius.circular(10)),
+                  color: Theme.of(context).colorScheme.primary,
+                ),
+                constraints: const BoxConstraints(maxHeight: double.infinity),
+                width: double.infinity,
+                padding: const EdgeInsets.all(5),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Container(
+                      constraints: const BoxConstraints(maxHeight: 200),
+                      child: AbsorbPointer(
+                        child: QuillEditor.basic(
+                          controller: _controller,
+                          readOnly: true,
+                        ),
+                      ),
+                    ),
+                    const Divider(
+                      thickness: 2,
+                    ),
+                    Text(
+                      timeOfNoteCreation,
+                      style:
+                          TextStyle(fontSize: 12, color: Colors.grey.shade800),
+                    )
+                  ],
+                )),
+          ],
+        ),
       ),
     );
   });
