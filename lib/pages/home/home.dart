@@ -42,22 +42,23 @@ class HomeBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Theme.of(context).colorScheme.background,
-        appBar: const MyAppBar(),
-        body: Container(
-            margin: const EdgeInsets.only(top: 5, bottom: 5, left: 5, right: 5),
-            child: gotData
-                ? MasonryGridView.count(
-                    crossAxisCount: 2,
-                    mainAxisSpacing: 10,
-                    crossAxisSpacing: 10,
-                    itemBuilder: (context, index) {
-                      if (index == notesPreview.length) return Container();
-                      return notesPreview[index];
-                    },
-                    itemCount: notesPreview.length,
-                  )
-                : const MyPreloader()),
-        bottomNavigationBar: const MyBottomNavBar());
+      backgroundColor: Theme.of(context).colorScheme.background,
+      appBar: const MyAppBar(),
+      body: Container(
+          margin: const EdgeInsets.only(top: 5, bottom: 5, left: 5, right: 5),
+          child: gotData
+              ? MasonryGridView.count(
+                  crossAxisCount: 2,
+                  mainAxisSpacing: 10,
+                  crossAxisSpacing: 10,
+                  itemBuilder: (context, index) {
+                    if (index == notesPreview.length) return Container();
+                    return notesPreview[index];
+                  },
+                  itemCount: notesPreview.length,
+                )
+              : const MyPreloader()),
+      floatingActionButton: const CreateNoteButton(),
+    );
   }
 }
